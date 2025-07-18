@@ -1,0 +1,42 @@
+✅ Tổng kết tiến độ hôm nay (18/07/2025)
+🔐 Chức năng Đăng nhập & Phân quyền
+    ✅ Tạo form đăng nhập chung cho cả User và Admin.
+
+    ✅ Phân biệt Admin/User sau khi đăng nhập:
+
+        User chuyển đến trangchu.jsp.
+
+        Admin cũng đến trangchu.jsp nhưng hiển thị thêm chức năng quản trị (sản phẩm, đơn hàng, người dùng).
+
+    ✅ Hiển thị lỗi đăng nhập bằng c:if và alert-danger.
+
+    ✅ Kiểm tra session để tránh truy cập trang chủ nếu chưa đăng nhập.
+
+    ✅ Làm chức năng đăng xuất (xoá session và chuyển về dangnhap.jsp).
+
+🖼️ Trang chủ & Giao diện sản phẩm
+    ✅ Trang chủ (trangchu.jsp) hiển thị danh sách sản phẩm.
+
+    ✅ Dùng Bootstrap để làm giao diện responsive, hiển thị sản phẩm đẹp mắt.
+
+    ✅ Sửa lại layout để mỗi hàng có 5 sản phẩm thay vì 3.
+
+    ✅ Cập nhật thẻ Bootstrap để hiển thị sản phẩm gọn gàng, đều hàng.
+
+📦 Dữ liệu sản phẩm
+    ✅ Thêm 3 sản phẩm đầu tiên (Asus, Dell, MacBook).
+
+    ✅ Thêm nhanh 20 sản phẩm mẫu nữa (có hình ảnh, thông số, mô tả…).
+
+    ✅ Dữ liệu có đầy đủ để chuẩn bị cho chức năng giỏ hàng sắp tới.
+
+🔁 Chức năng Phân trang
+    ✅ Hiển thị sản phẩm theo trang, mỗi trang 8 sản phẩm.
+
+    ✅ Viết code phân trang dùng offset, fetch next trong SQL Server.
+
+    ✅ Tính toán tổng số trang và trang hiện tại.
+
+    ✅ Tạo thanh phân trang với số trang (1, 2, 3,...).
+
+    ✅ Thêm nút "Trang trước" / "Trang sau" cho điều hướng mượt mà hơn.

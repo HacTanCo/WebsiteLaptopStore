@@ -1,0 +1,71 @@
+🔧 1. Cấu trúc hệ thống tổng quát
+a. Giao diện người dùng (Frontend):
+Trang chủ (hiển thị danh sách laptop)
+
+Trang chi tiết sản phẩm
+
+Trang đăng ký / đăng nhập
+
+Trang tìm kiếm & lọc sản phẩm
+
+Giỏ hàng
+
+Đặt hàng
+
+Trang quản lý dành cho Admin (thêm/sửa/xóa sản phẩm, xem đơn hàng,...)
+
+b. Xử lý phía server (Backend - Java Servlet + JSP)
+Quản lý session người dùng (đăng nhập, đăng xuất)
+
+Gửi/nhận dữ liệu từ JSP/Servlet đến DB
+
+Các servlet xử lý:
+
+Đăng ký
+
+Đăng nhập
+
+Lọc sản phẩm
+
+Giỏ hàng
+
+Đặt hàng
+
+CRUD sản phẩm (dành cho admin)
+
+c. Cơ sở dữ liệu (SQL Server)
+Tạo bảng lưu thông tin: sản phẩm, người dùng, đơn hàng, chi tiết đơn hàng...
+
+📦 2. Các chức năng cần có trong shop laptop
+Nhóm chức năng	Mô tả
+Sản phẩm	Hiển thị danh sách laptop, lọc theo CPU, RAM, hãng, giá,...
+Chi tiết sản phẩm	Hình ảnh, mô tả, cấu hình chi tiết, đánh giá, giá bán
+Tìm kiếm & lọc	Theo tên, hãng, giá, CPU, RAM,...
+Giỏ hàng	Thêm/xóa sản phẩm, cập nhật số lượng, tính tổng tiền
+Đặt hàng	Nhập thông tin người nhận, xác nhận đặt hàng
+Tài khoản người dùng	Đăng ký, đăng nhập, sửa thông tin cá nhân
+Phân quyền	Phân biệt giữa người dùng và admin
+Quản lý sản phẩm (admin)	Thêm, sửa, xóa sản phẩm
+Quản lý đơn hàng (admin)	Xem danh sách đơn hàng, trạng thái xử lý
+Quản lý người dùng (admin)	Cấp quyền admin cho user
+📁 3. Các bảng cần có trong SQL Server
+Bảng	Mục đích
+NguoiDung (maNguoiDung, tenDangNhap, matKhau, hoTen, isAdmin)	Lưu thông tin tài khoản
+SanPham (maSanPham, tenSanPham, gia, hang, cpu, ram, oCung, manHinh, hinhAnh, moTa)	Lưu thông tin laptop
+GioHang (maNguoiDung, maSanPham, soLuong)	Giỏ hàng người dùng
+DonHang (maDonHang, maNguoiDung, ngayDat, tongTien, trangThai)	Thông tin đơn hàng
+ChiTietDonHang (maDonHang, maSanPham, soLuong, donGia)	Chi tiết các sản phẩm trong đơn
+(Tuỳ chọn) DanhGia, LienHe, YeuThich	Đánh giá, liên hệ hỗ trợ, sản phẩm yêu thích
+
+💡 4. Gợi ý tiến độ làm project
+Bước	Mô tả
+B1	Thiết kế CSDL
+B2	Tạo giao diện (HTML + Bootstrap)
+B3	Hiển thị danh sách sản phẩm
+B4	Xem chi tiết sản phẩm
+B5	Đăng ký/Đăng nhập
+B6	Giỏ hàng và đặt hàng
+B7	Admin: CRUD sản phẩm
+B8	Admin: Quản lý đơn hàng và người dùng
+B9	Hoàn thiện UI/UX, kiểm thử
+
