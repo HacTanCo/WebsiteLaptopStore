@@ -21,7 +21,7 @@
             <p><strong>Ổ cứng:</strong> ${sp.oCung}</p>
             <p><strong>Màn hình:</strong> ${sp.manHinh}</p>
             <p><strong>Mô tả:</strong><br>${sp.moTa}</p>
-            <a href="giohang.jsp?add=${sp.maSanPham}" class="btn btn-primary">Thêm vào giỏ hàng</a>
+            <a href="themvaogio?id=${sp.maSanPham}" class="btn btn-primary">Thêm vào giỏ hàng</a>
         </div>
     </div>
 </body>

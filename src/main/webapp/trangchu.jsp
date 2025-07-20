@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.util.Map" %>
+
 <%
     if (session.getAttribute("nd") == null) {
         response.sendRedirect("dangnhap.jsp");
@@ -16,15 +18,13 @@
 </head>
 <body class="container mt-4">
 	 <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h2 class="mb-0">Chào mừng, <c:out value="${nd.hoTen}" /></h2>
-            <p class="text-muted mb-0">Chúc bạn một ngày tốt lành!</p>
-        </div>
-        <div>
-            <a href="dangxuat" class="btn btn-danger">Đăng xuất</a>
-        </div>
-    </div>
+    <div class="d-flex gap-2 justify-content-end mt-4 mb-4">
+	    <a href="xemgiohang.jsp" class="btn btn-warning">
+		    🛒 Giỏ hàng (<c:out value="${soSanPhamTrongGio}" />)
+		</a>
+	    <a href="dangxuat" class="btn btn-danger">Đăng xuất</a>
+	</div>
+
 
     <!-- Admin Panel -->
     <c:if test="${nd.admin}">
@@ -47,39 +47,42 @@
                     <div class="card-body">
                         <h5 class="card-title">${sp.tenSanPham}</h5>
                         <p class="card-text"><fmt:formatNumber value="${sp.gia}" type="number" groupingUsed="true"/>₫</p>
-                        <a href="chitietsanpham?id=${sp.maSanPham}" class="btn btn-primary">Xem chi tiết</a>
+                        <div class="d-flex gap-2">
+						    <a href="chitietsanpham?id=${sp.maSanPham}" class="btn btn-primary btn-sm">Xem chi tiết</a>
+						    <a href="themvaogio?id=${sp.maSanPham}" class="btn btn-success btn-sm">Thêm vào giỏ</a>
+						</div>
                     </div>
                 </div>
             </div>
         </c:forEach>
     </div>
     <!-- PHÂN TRANG -->
-<nav class="mt-4">
-    <ul class="pagination justify-content-center">
-
-        <!-- Nút "Trang trước" -->
-        <c:if test="${trangHienTai > 1}">
-            <li class="page-item">
-                <a class="page-link" href="trangchu?page=${trangHienTai - 1}">&laquo;Trước</a>
-            </li>
-        </c:if>
-
-        <!-- Các số trang -->
-        <c:forEach var="i" begin="1" end="${tongTrang}">
-            <li class="page-item ${i == trangHienTai ? 'active' : ''}">
-                <a class="page-link" href="trangchu?page=${i}">${i}</a>
-            </li>
-        </c:forEach>
-
-        <!-- Nút "Trang sau" -->
-        <c:if test="${trangHienTai < tongTrang}">
-            <li class="page-item">
-                <a class="page-link" href="trangchu?page=${trangHienTai + 1}">Sau &raquo;</a>
-            </li>
-        </c:if>
-
-    </ul>
-</nav>
+	<nav class="mt-4">
+	    <ul class="pagination justify-content-center">
+	
+	        <!-- Nút "Trang trước" -->
+	        <c:if test="${trangHienTai > 1}">
+	            <li class="page-item">
+	                <a class="page-link" href="trangchu?page=${trangHienTai - 1}">&laquo;Trước</a>
+	            </li>
+	        </c:if>
+	
+	        <!-- Các số trang -->
+	        <c:forEach var="i" begin="1" end="${tongTrang}">
+	            <li class="page-item ${i == trangHienTai ? 'active' : ''}">
+	                <a class="page-link" href="trangchu?page=${i}">${i}</a>
+	            </li>
+	        </c:forEach>
+	
+	        <!-- Nút "Trang sau" -->
+	        <c:if test="${trangHienTai < tongTrang}">
+	            <li class="page-item">
+	                <a class="page-link" href="trangchu?page=${trangHienTai + 1}">Sau &raquo;</a>
+	            </li>
+	        </c:if>
+	
+	    </ul>
+	</nav>
 
     
 </body>

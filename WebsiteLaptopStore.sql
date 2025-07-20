@@ -94,4 +94,11 @@ INSERT INTO SanPham  VALUES
 
 select * from SanPham
 select * from NguoiDung	
-SELECT COUNT(*) FROM SanPham	
+select * from GioHang
+
+select COUNT(maNguoiDung) from GioHang
+where maNguoiDung = 1
+
+SELECT SanPham.*, GioHang.soLuong
+FROM GioHang JOIN SanPham ON SanPham.maSanPham = GioHang.maSanPham
+WHERE GioHang.maNguoiDung = 1

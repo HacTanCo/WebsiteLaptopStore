@@ -35,4 +35,33 @@ public class NguoiDungDAO {
 		return nd;
 	}
 
+	public boolean kiemTraEmailTonTai(String email) {
+		try {
+			Connection conn = KetNoiCSDL.getConnection();
+			String sql = "SELECT * FROM NguoiDung WHERE email = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			return rs.next(); // Có bản ghi tức là email đã tồn tại
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public void themNguoiDung(NguoiDung nd) {
+		try {
+			Connection conn = KetNoiCSDL.getConnection();
+			String sql = "INSERT INTO NguoiDung (email, matKhau, hoTen, isAdmin) VALUES (?, ?, ?, ?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, nd.getEmail());
+			ps.setString(2, nd.getMatKhau());
+			ps.setString(3, nd.getHoTen());
+			ps.setBoolean(4, nd.isAdmin());
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
