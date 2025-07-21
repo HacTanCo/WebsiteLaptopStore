@@ -48,3 +48,23 @@
 
     ✅ Xem danh sách các mặt hàng ở trong giỏ
 
+					✅ Tổng kết tiến độ hôm nay (21/07/2025)
+🛒 Chức năng Giỏ hàng
+
+    ✅ Thêm chức năng sửa và xóa mặt hàng trong giỏ hàng ( full CRUD)
+
+🛒 Chức năng Đặt hàng
+
+    ✅ 	Tạo bản ghi mới trong bảng DonHang.
+
+    ✅ 	Tạo các bản ghi chi tiết trong ChiTietDonHang.
+
+    ✅ 	Xoá các sản phẩm khỏi giỏ hàng của người dùng.
+
+Ghi chú: nếu đặt hàng null thì sẽ hiển thị thông báo ( giỏ hàng trống hãy them hàng vào nhé)
+
+🔁 Chức năng xem lịch sử mua hàng
+
+    ✅ kik vào nút xem lịch sử mua hàng sẽ hiện ra trang lichsumuahang
+
+

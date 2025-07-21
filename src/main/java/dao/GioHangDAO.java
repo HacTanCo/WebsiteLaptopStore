@@ -82,4 +82,42 @@ public class GioHangDAO {
 		return soLuong;
 	}
 
+	// Cập nhật số lượng sản phẩm trong giỏ
+	public void capNhatSoLuong(int maNguoiDung, int maSanPham, int soLuong) {
+		String sql = "UPDATE GioHang SET soLuong = ? WHERE maNguoiDung = ? AND maSanPham = ?";
+		try (Connection conn = KetNoiCSDL.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setInt(1, soLuong);
+			ps.setInt(2, maNguoiDung);
+			ps.setInt(3, maSanPham);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Xóa sản phẩm khỏi giỏ
+	public void xoaSanPhamKhoiGio(int maNguoiDung, int maSanPham) {
+		String sql = "DELETE FROM GioHang WHERE maNguoiDung = ? AND maSanPham = ?";
+		try (Connection conn = KetNoiCSDL.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setInt(1, maNguoiDung);
+			ps.setInt(2, maSanPham);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Xóa khỏi giỏ hàng sau khi mua
+	public void xoaGioHang(int maNguoiDung) {
+		String sql = "DELETE FROM GioHang WHERE maNguoiDung = ?";
+
+		try (Connection conn = KetNoiCSDL.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+			ps.setInt(1, maNguoiDung);
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

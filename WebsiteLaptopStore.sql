@@ -1,4 +1,3 @@
-
 CREATE TABLE NguoiDung (
     maNguoiDung INT IDENTITY(1,1) PRIMARY KEY,
     email VARCHAR(50) UNIQUE NOT NULL,
@@ -95,6 +94,8 @@ INSERT INTO SanPham  VALUES
 select * from SanPham
 select * from NguoiDung	
 select * from GioHang
+select * from DonHang
+select * from ChiTietDonHang
 
 select COUNT(maNguoiDung) from GioHang
 where maNguoiDung = 1
@@ -102,3 +103,8 @@ where maNguoiDung = 1
 SELECT SanPham.*, GioHang.soLuong
 FROM GioHang JOIN SanPham ON SanPham.maSanPham = GioHang.maSanPham
 WHERE GioHang.maNguoiDung = 1
+
+SELECT * 
+FROM DonHang 
+WHERE maNguoiDung = 1 
+ORDER BY ngayDat ASC
