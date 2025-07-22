@@ -108,3 +108,6 @@ SELECT *
 FROM DonHang 
 WHERE maNguoiDung = 1 
 ORDER BY ngayDat ASC
+
+select * from SanPham
+where tenSanPham like N'%dell%'

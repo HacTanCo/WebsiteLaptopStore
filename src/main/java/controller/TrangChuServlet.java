@@ -32,20 +32,6 @@ public class TrangChuServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int page = 1;
-		int limit = 8;
-		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-		}
-
-		SanPhamDAO dao = new SanPhamDAO();
-		List<SanPham> danhSachSanPham = dao.getSanPhamTheoTrang(page, limit);
-		int tongSanPham = dao.demSanPham();
-		int tongTrang = (int) Math.ceil(tongSanPham * 1.0 / limit);
-
-		request.setAttribute("danhSachSanPham", danhSachSanPham);
-		request.setAttribute("trangHienTai", page);
-		request.setAttribute("tongTrang", tongTrang);
 		// hiện số trong giỏ hàng ở trang chủ
 		NguoiDung nd = (NguoiDung) request.getSession().getAttribute("nd");
 		if (nd != null) {
@@ -53,6 +39,31 @@ public class TrangChuServlet extends HttpServlet {
 			int soSanPhamTrongGio = gioHangDAO.demSoSanPhamTrongGio(nd.getMaNguoiDung());
 			request.setAttribute("soSanPhamTrongGio", soSanPhamTrongGio);
 		}
+		int page = 1;
+		int limit = 8;
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		int offset = (page - 1) * limit;
+
+		// Lấy dữ liệu đã lọc
+		String keyword = request.getParameter("keyword");
+		String cpu = request.getParameter("cpu");
+		String ram = request.getParameter("ram");
+		String minPrice = request.getParameter("minPrice");
+		String maxPrice = request.getParameter("maxPrice");
+
+		SanPhamDAO dao = new SanPhamDAO();
+		List<SanPham> dsSanPham = dao.timKiemSanPham(keyword, cpu, ram, minPrice, maxPrice, offset, limit);
+
+		// Đếm tổng sản phẩm để phân trang
+		int tongSanPham = dao.demSanPhamTheoBoLoc(keyword, cpu, ram, minPrice, maxPrice);
+		int tongTrang = (int) Math.ceil(tongSanPham * 1.0 / limit);
+
+		// Set thuộc tính cho trang JSP
+		request.setAttribute("danhSachSanPham", dsSanPham);
+		request.setAttribute("trangHienTai", page);
+		request.setAttribute("tongTrang", tongTrang);
 
 		request.getRequestDispatcher("trangchu.jsp").forward(request, response);
 	}

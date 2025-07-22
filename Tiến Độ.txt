@@ -1,4 +1,7 @@
-					✅ Tổng kết tiến độ hôm nay (18/07/2025)
+Link githup: https://github.com/HacTanCo/WebsiteLaptopStore
+
+	Tổng kết tiến độ ngày - 18/07/2025
+
 🔐 Chức năng Đăng nhập & Phân quyền
     ✅ Tạo form đăng nhập chung cho cả User và Admin.
 
@@ -38,7 +41,8 @@
 
     ✅ Thêm nút "Trước" / "Sau" cho điều hướng mượt mà hơn.
 		
-					✅ Tổng kết tiến độ hôm nay (20/07/2025)
+	Tổng kết tiến độ ngày - 20/07/2025
+
 🔐 Chức năng Đăng Ký
     ✅ Tạo form đăng ký.
 🛒 Chức năng Giỏ hàng 
@@ -48,7 +52,7 @@
 
     ✅ Xem danh sách các mặt hàng ở trong giỏ
 
-					✅ Tổng kết tiến độ hôm nay (21/07/2025)
+	Tổng kết tiến độ ngày - 21/07/2025
 🛒 Chức năng Giỏ hàng
 
     ✅ Thêm chức năng sửa và xóa mặt hàng trong giỏ hàng ( full CRUD)
@@ -66,5 +70,9 @@ Ghi chú: nếu đặt hàng null thì sẽ hiển thị thông báo ( giỏ hà
 🔁 Chức năng xem lịch sử mua hàng
 
     ✅ kik vào nút xem lịch sử mua hàng sẽ hiện ra trang lichsumuahang
+
+
+
+
 
 
