@@ -21,6 +21,6 @@ public class DangXuatServlet extends HttpServlet {
 		if (session != null) {
 			session.invalidate(); // hủy session
 		}
-		response.sendRedirect("dangnhap.jsp"); // chuyển về trang đăng nhập
+		response.sendRedirect("dangnhap"); // chuyển về trang đăng nhập
 	}
 }

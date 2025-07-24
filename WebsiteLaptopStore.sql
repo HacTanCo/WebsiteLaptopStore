@@ -3,7 +3,8 @@ CREATE TABLE NguoiDung (
     email VARCHAR(50) UNIQUE NOT NULL,
     matKhau VARCHAR(255) NOT NULL,
     hoTen NVARCHAR(100) NOT NULL,
-    isAdmin BIT DEFAULT 0 -- 0: User, 1: Admin
+    isAdmin BIT DEFAULT 0, -- 0: User, 1: Admin
+	trangThai BIT DEFAULT 1
 );
 
 CREATE TABLE SanPham (
@@ -53,6 +54,10 @@ CREATE TABLE DanhGia (
     FOREIGN KEY (maSanPham) REFERENCES SanPham(maSanPham),
     FOREIGN KEY (maNguoiDung) REFERENCES NguoiDung(maNguoiDung)
 );
+
+ALTER TABLE NguoiDung ADD trangThai BIT DEFAULT 1;
+-- 1: đang hoạt động
+-- 0: bị khóa
 
 -- Admin
 INSERT INTO NguoiDung 

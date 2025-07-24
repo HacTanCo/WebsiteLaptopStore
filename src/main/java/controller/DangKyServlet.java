@@ -43,7 +43,7 @@ public class DangKyServlet extends HttpServlet {
 			return;
 		}
 
-		NguoiDung nd = new NguoiDung(0, email, matKhau, hoTen, false);
+		NguoiDung nd = new NguoiDung(0, email, matKhau, hoTen, false, true);
 		dao.themNguoiDung(nd);
 
 		request.setAttribute("success", "Đăng ký thành công! Mời bạn đăng nhập.");

@@ -14,6 +14,10 @@
         <div class="alert alert-danger">${err}</div>
     </c:if>
     
+    <c:if test="${not empty thongBao}">
+	    <div class="alert alert-danger">${thongBao}</div>
+	</c:if>
+    
     <form method="post" action="dangnhap">
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>

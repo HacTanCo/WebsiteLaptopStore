@@ -5,7 +5,7 @@
 
 <%
     if (session.getAttribute("nd") == null) {
-        response.sendRedirect("dangnhap.jsp");
+        response.sendRedirect("dangnhap");
         return;
     }
 %>
@@ -50,7 +50,7 @@
 			<div class="d-flex gap-2 mt-2 mb-2">
 				<a href="quanly-sanpham.jsp" class="btn btn-outline-primary btn-sm">Quản lý sản phẩm</a>
 				<a href="quanly-donhang.jsp" class="btn btn-outline-primary btn-sm">Quản lý đơn hàng</a>
-				<a href="quanly-nguoidung.jsp" class="btn btn-outline-primary btn-sm">Quản lý người dùng</a>
+				<a href="admin/nguoidung" class="btn btn-outline-primary btn-sm">Quản lý người dùng</a>
 			</div>
 		</div>
 	</c:if>
@@ -132,17 +132,14 @@
 	<!-- PHÂN TRANG -->
 	<nav class="mt-4">
 		<ul class="pagination justify-content-center">
-
 			<!-- Nút "Trang trước" -->
 			<c:if test="${trangHienTai > 1}">
 				<li class="page-item">
 					<%-- <a class="page-link" href="trangchu?page=${trangHienTai - 1}">&laquo;Trước</a> --%>
 						<a class="page-link"
 							href="trangchu?page=${trangHienTai - 1}&keyword=${param.keyword}&cpu=${param.cpu}&ram=${param.ram}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}">&laquo;Trước</a>
-
 				</li>
 			</c:if>
-
 			<!-- Các số trang -->
 			<c:forEach var="i" begin="1" end="${tongTrang}">
 				<li class="page-item ${i == trangHienTai ? 'active' : ''}">
@@ -151,7 +148,6 @@
 
 				</li>
 			</c:forEach>
-
 			<!-- Nút "Trang sau" -->
 			<c:if test="${trangHienTai < tongTrang}">
 				<li class="page-item">
@@ -159,10 +155,8 @@
 						<a class="page-link"
 							href="trangchu?page=${trangHienTai + 1}&keyword=${param.keyword}&cpu=${param.cpu}&ram=${param.ram}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}">Sau
 							&raquo;</a>
-
 				</li>
 			</c:if>
-
 		</ul>
 	</nav>
 

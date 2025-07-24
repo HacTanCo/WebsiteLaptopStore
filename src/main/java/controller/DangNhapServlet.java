@@ -19,20 +19,31 @@ public class DangNhapServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String email = request.getParameter("email");
 		String matKhau = request.getParameter("matKhau");
+
 		NguoiDungDAO dao = new NguoiDungDAO();
 		NguoiDung nd = dao.dangNhap(email, matKhau);
 
-		if (nd != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("nd", nd); // lưu toàn bộ người dùng vào session
-
-			response.sendRedirect("trangchu");
-		} else {
+		if (nd == null) {
 			request.setAttribute("err", "Email hoặc mật khẩu không đúng");
 			request.getRequestDispatcher("dangnhap.jsp").forward(request, response);
+			return;
 		}
+
+		if (!nd.isTrangThai()) {
+			request.setAttribute("thongBao", "Tài khoản này hiện đang bị khóa.");
+			request.getRequestDispatcher("dangnhap.jsp").forward(request, response);
+			return;
+		}
+
+		if (nd != null && nd.isTrangThai()) {
+			HttpSession session = request.getSession();
+			session.setAttribute("nd", nd);
+			response.sendRedirect("trangchu");
+		}
+
 	}
 
 	@Override

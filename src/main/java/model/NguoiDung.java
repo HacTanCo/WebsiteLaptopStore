@@ -6,17 +6,19 @@ public class NguoiDung {
 	private String matKhau;
 	private String hoTen;
 	private boolean isAdmin;
+	private boolean trangThai;
 
 	public NguoiDung() {
 	}
 
-	public NguoiDung(int maNguoiDung, String email, String matKhau, String hoTen, boolean isAdmin) {
+	public NguoiDung(int maNguoiDung, String email, String matKhau, String hoTen, boolean isAdmin, boolean trangThai) {
 		super();
 		this.maNguoiDung = maNguoiDung;
 		this.email = email;
 		this.matKhau = matKhau;
 		this.hoTen = hoTen;
 		this.isAdmin = isAdmin;
+		this.trangThai = trangThai;
 	}
 
 	public int getMaNguoiDung() {
@@ -57,6 +59,14 @@ public class NguoiDung {
 
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+
+	public boolean isTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(boolean trangThai) {
+		this.trangThai = trangThai;
 	}
 
 }
