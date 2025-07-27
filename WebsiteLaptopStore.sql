@@ -116,3 +116,6 @@ ORDER BY ngayDat ASC
 
 select * from SanPham
 where tenSanPham like N'%dell%'
+
+select * from SanPham
+where hang = 'Apple'
