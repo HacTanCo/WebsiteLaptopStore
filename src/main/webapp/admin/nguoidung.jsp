@@ -10,11 +10,11 @@
 	<!-- Header -->
 	<div class="d-flex justify-content-end align-items-center gap-3 mt-4 mb-4">
 
-		<a href="${pageContext.request.contextPath}/trangchu" class="btn btn-secondary">⬅ Trang Chủ</a>
+		<a href="${pageContext.request.contextPath}/trangchu" class="btn btn-secondary">Trang Chủ</a>
 
 		<!-- Nút Đăng xuất -->
 		<a href="${pageContext.request.contextPath}/dangxuat" class="btn btn-danger d-flex align-items-center">
-			🚪 <span class="ms-1">Đăng xuất</span>
+			<span class="ms-1">Đăng xuất</span>
 		</a>
 	</div>
 	<c:if test="${not empty sessionScope.message}">
@@ -27,15 +27,17 @@
 	
 	
 	<!-- find email or role  -->
-	<form method="get" action="nguoidung" class="mb-3">
-	    <input type="text" name="keyword" value="${param.keyword}" placeholder="Tìm theo email" class="form-control d-inline w-50">
-	    <select name="role" class="form-select d-inline w-25">
-	        <option value="">Tất cả</option>
-	        <option value="admin" ${param.role == 'admin' ? 'selected' : ''}>Admin</option>
-	        <option value="user" ${param.role == 'user' ? 'selected' : ''}>User</option>
-	    </select>
-	    <button class="btn btn-primary">Tìm kiếm</button>
-	</form>
+	<div class="d-flex justify-content-center align-items-center">
+		<form method="get" action="nguoidung" class="mb-3">
+		    <input type="text" name="keyword" value="${param.keyword}" placeholder="Tìm theo email" class="form-control d-inline w-50">
+		    <select name="role" class="form-select d-inline w-25">
+		        <option value="">Tất cả</option>
+		        <option value="admin" ${param.role == 'admin' ? 'selected' : ''}>Admin</option>
+		        <option value="user" ${param.role == 'user' ? 'selected' : ''}>User</option>
+		    </select>
+		    <button class="btn btn-primary">Tìm kiếm</button>
+		</form>
+	</div>
 	
 	<!-- Table user management  -->
     <h2 class="mb-4 text-center">Quản lý Người Dùng</h2>
@@ -75,26 +77,36 @@
 						<c:if test="${nd.maNguoiDung == sessionScope.nd.maNguoiDung}">
 						    <span class="badge bg-secondary">Tài khoản của bạn</span>
 						</c:if> --%>
-                    	<form action="${pageContext.request.contextPath}/admin/capquyen" method="post"
-							class="d-inline"
-							onsubmit="return confirm('Bạn có chắc chắn muốn ${nd.admin ? 'hủy quyền Admin' : 'cấp quyền Admin'} cho người dùng này?');">
-							<input type="hidden" name="id" value="${nd.maNguoiDung}">
-							<input type="hidden" name="isAdmin" value="${!nd.admin}">
-							<button type="submit" class="btn btn-sm ${nd.admin ? 'btn-danger' : 'btn-success'}">
-								${nd.admin ? 'Hủy quyền Admin' : 'Cấp quyền Admin'}
-							</button>
-						</form>
+						<c:if test="${nd.maNguoiDung != sessionScope.nd.maNguoiDung}">
+	                    	<form action="${pageContext.request.contextPath}/admin/capquyen" method="post"
+								class="d-inline"
+								onsubmit="return confirm('Bạn có chắc chắn muốn ${nd.admin ? 'hủy quyền Admin' : 'cấp quyền Admin'} cho người dùng này?');">
+								<input type="hidden" name="id" value="${nd.maNguoiDung}">
+								<input type="hidden" name="isAdmin" value="${!nd.admin}">
+								<button type="submit" class="btn btn-sm ${nd.admin ? 'btn-danger' : 'btn-success'}">
+									${nd.admin ? 'Hủy quyền Admin' : 'Cấp quyền Admin'}
+								</button>
+							</form>
+						</c:if>
+						<c:if test="${nd.maNguoiDung == sessionScope.nd.maNguoiDung}">
+						    <span class="badge bg-secondary">Tài khoản của bạn</span>
+						</c:if>
                     </td>
 					<td>
-						<form action="${pageContext.request.contextPath}/admin/trangthaitaikhoan" method="post"
-							class="d-inline"
-							onsubmit="return confirm('${nd.trangThai ? 'Bạn có chắc muốn KHÓA tài khoản này?' : 'Bạn có muốn MỞ KHÓA tài khoản này?'}');">
-							<input type="hidden" name="id" value="${nd.maNguoiDung}" />
-							<input type="hidden" name="trangThaiMoi" value="${!nd.trangThai}" />
-							<button type="submit" class="btn btn-sm ${nd.trangThai ? 'btn-danger' : 'btn-success'}">
-								${nd.trangThai ? 'Khóa' : 'Mở khóa'}
-							</button>
-						</form>
+						<c:if test="${nd.maNguoiDung != sessionScope.nd.maNguoiDung}">
+							<form action="${pageContext.request.contextPath}/admin/trangthaitaikhoan" method="post"
+								class="d-inline"
+								onsubmit="return confirm('${nd.trangThai ? 'Bạn có chắc muốn KHÓA tài khoản này?' : 'Bạn có muốn MỞ KHÓA tài khoản này?'}');">
+								<input type="hidden" name="id" value="${nd.maNguoiDung}" />
+								<input type="hidden" name="trangThaiMoi" value="${!nd.trangThai}" />
+								<button type="submit" class="btn btn-sm ${nd.trangThai ? 'btn-danger' : 'btn-success'}">
+									${nd.trangThai ? 'Khóa' : 'Mở khóa'}
+								</button>
+							</form>
+						</c:if>
+						<c:if test="${nd.maNguoiDung == sessionScope.nd.maNguoiDung}">
+						    <span class="badge bg-secondary"></span>
+						</c:if>
 					</td>
                 </tr>
             </c:forEach>

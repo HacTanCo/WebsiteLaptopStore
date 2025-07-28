@@ -13,17 +13,17 @@
 
 	    <!-- Nút Giỏ hàng -->
 	    <a href="xemgiohang.jsp" class="btn btn-warning d-flex align-items-center">
-	        🛒 <span class="ms-1">Giỏ hàng (<c:out value="${soSanPhamTrongGio}" />)</span>
+	        <span class="ms-1">Giỏ hàng (<c:out value="${soSanPhamTrongGio}" />)</span>
 	    </a>
 	
 	    <!-- Nút Lịch sử đơn hàng -->
 	    <a href="lichsudonhang" class="btn btn-outline-primary d-flex align-items-center">
-	        📦 <span class="ms-1">Lịch sử đơn hàng</span>
+	        <span class="ms-1">Lịch sử đơn hàng</span>
 	    </a>
 	
 	    <!-- Nút Đăng xuất -->
 	    <a href="dangxuat" class="btn btn-danger d-flex align-items-center">
-	        🚪 <span class="ms-1">Đăng xuất</span>
+	        <span class="ms-1">Đăng xuất</span>
 	    </a>
 	</div>
     <div class="row">

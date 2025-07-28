@@ -120,4 +120,21 @@ public class GioHangDAO {
 			e.printStackTrace();
 		}
 	}
+
+	public int laySoLuong(int maNguoiDung, int maSanPham) {
+		int soLuong = 0;
+		String sql = "SELECT soLuong FROM GioHang WHERE maNguoiDung = ? AND maSanPham = ?";
+		try (Connection conn = KetNoiCSDL.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setInt(1, maNguoiDung);
+			ps.setInt(2, maSanPham);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				soLuong = rs.getInt("soLuong");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return soLuong;
+	}
+
 }

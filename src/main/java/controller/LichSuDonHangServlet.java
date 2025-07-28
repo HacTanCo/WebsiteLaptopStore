@@ -35,6 +35,7 @@ public class LichSuDonHangServlet extends HttpServlet {
 
 		List<DonHang> danhSach = donHangDAO.layDanhSachDonHangTheoNguoiDung(nd.getMaNguoiDung());
 		request.setAttribute("danhSachDonHang", danhSach);
+
 		request.getRequestDispatcher("lichsudonhang.jsp").forward(request, response);
 	}
 }

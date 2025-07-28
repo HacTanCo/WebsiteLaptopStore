@@ -12,8 +12,8 @@
 <body class="container mt-4">
 	<!-- Header -->
 	<div class="d-flex justify-content-end align-items-center gap-3 mt-4 mb-4">
-		<a href="${pageContext.request.contextPath}/admin/sanpham" class="btn btn-secondary">⬅ Quay lại</a>
-		<a href="${pageContext.request.contextPath}/dangxuat" class="btn btn-danger">🚪 Đăng xuất</a>
+		<a href="${pageContext.request.contextPath}/admin/sanpham" class="btn btn-secondary">Quay lại</a>
+		<a href="${pageContext.request.contextPath}/dangxuat" class="btn btn-danger">Đăng xuất</a>
 	</div>
 	<c:if test="${not empty err}">
         <div class="alert alert-danger">${err}</div>

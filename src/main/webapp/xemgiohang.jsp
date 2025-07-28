@@ -23,6 +23,37 @@
 <head>
     <title>Giỏ hàng</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+	<style>
+		.cart-quantity-control {
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    gap: 0.5rem;
+		}
+		
+		.cart-quantity-control form {
+		    margin: 0;
+		}
+		
+		.cart-quantity-control button {
+		    width: 32px;
+		    height: 32px;
+		    padding: 0;
+		    font-size: 16px;
+		    line-height: 1;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    border-radius: 50%;
+		}
+		
+		.cart-quantity-control span {
+		    min-width: 24px;
+		    text-align: center;
+		    font-weight: 500;
+		}
+				
+	</style>
 </head>
 <body class="container mt-5">
 	 <!-- Header -->
@@ -35,12 +66,12 @@
 	
 	    <!-- Nút Lịch sử đơn hàng -->
 	    <a href="lichsudonhang" class="btn btn-outline-primary d-flex align-items-center">
-	        📦 <span class="ms-1">Lịch sử đơn hàng</span>
+	        <span class="ms-1">Lịch sử đơn hàng</span>
 	    </a>
 	
 	    <!-- Nút Đăng xuất -->
 	    <a href="dangxuat" class="btn btn-danger d-flex align-items-center">
-	        🚪 <span class="ms-1">Đăng xuất</span>
+	        <span class="ms-1">Đăng xuất</span>
 	    </a>
 	</div>
 	<%
@@ -55,7 +86,7 @@
 	    }
 	%>
 	
-    <h2 class="mb-4">🛒 Giỏ hàng của bạn</h2>
+    <h2 class="mb-4 text-center">Giỏ hàng của bạn</h2>
 
     <c:choose>
         <c:when test="${empty gioHang}">
@@ -86,12 +117,27 @@
 				
 				            <!-- Form sửa số lượng -->
 				            <td>
-				                <form action="suagiohang" method="post" class="d-flex justify-content-center">
-				                    <input type="hidden" name="maSanPham" value="${sp.maSanPham}" />
-				                    <input type="number" name="soLuong" value="${item.soLuong}" min="1" class="form-control w-50" />
-				                    <button type="submit" class="btn btn-primary btn-sm ms-2">✔</button>
-				                </form>
-				            </td>
+							    <div class="d-flex justify-content-center align-items-center gap-2">
+							        <div class="cart-quantity-control">
+								        <!-- Nút giảm -->
+								        <form action="suagiohang" method="post">
+								            <input type="hidden" name="maSanPham" value="${sp.maSanPham}" />
+								            <input type="hidden" name="thaoTac" value="giam" />
+								            <button type="submit" class="btn btn-outline-secondary btn-sm">➖</button>
+								        </form>
+								
+								        <span class="px-2">${item.soLuong}</span>
+								
+								        <!-- Nút tăng -->
+								        <form action="suagiohang" method="post">
+								            <input type="hidden" name="maSanPham" value="${sp.maSanPham}" />
+								            <input type="hidden" name="thaoTac" value="tang" />
+								            <button type="submit" class="btn btn-outline-secondary btn-sm">➕</button>
+								        </form>
+							        </div>
+							    </div>
+							</td>
+
 				
 				            <td><fmt:formatNumber value="${thanhTien}" type="number" groupingUsed="true"/>₫</td>
 				

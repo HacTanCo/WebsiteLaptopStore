@@ -3,6 +3,9 @@
 <%@ page import="java.util.List" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+
 <%@ page import="model.DonHang" %>
 
 <%
@@ -15,6 +18,8 @@
     <meta charset="UTF-8">
     <title>Lịch sử đơn hàng</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
 </head>
 <body class="container mt-4">
 	<!-- Header -->
@@ -22,17 +27,17 @@
 
 	    <!-- Nút Giỏ hàng -->
 	    <a href="xemgiohang.jsp" class="btn btn-warning d-flex align-items-center">
-	        🛒 <span class="ms-1">Giỏ hàng (<c:out value="${soSanPhamTrongGio}" />)</span>
+	        <span class="ms-1">Giỏ hàng (<c:out value="${soSanPhamTrongGio}" />)</span>
 	    </a>
 	
 	    <!-- Nút Lịch sử đơn hàng -->
 	    <a href="lichsudonhang" class="btn btn-outline-primary d-flex align-items-center">
-	        📦 <span class="ms-1">Lịch sử đơn hàng</span>
+	        <span class="ms-1">Lịch sử đơn hàng</span>
 	    </a>
 	
 	    <!-- Nút Đăng xuất -->
 	    <a href="dangxuat" class="btn btn-danger d-flex align-items-center">
-	        🚪 <span class="ms-1">Đăng xuất</span>
+	       <span class="ms-1">Đăng xuất</span>
 	    </a>
 	</div>
 	<div class="container mt-5">
@@ -49,6 +54,7 @@
 	                    <th>Ngày đặt</th>
 	                    <th>Tổng tiền</th>
 	                    <th>Trạng thái</th>
+	                    <th>Hành động</th>
 	                </tr>
 	            </thead>
 	            <tbody>
@@ -58,6 +64,19 @@
 	                        <td>${dh.ngayDat}</td>
 	                        <td><fmt:formatNumber value="${dh.tongTien}" type="number" groupingUsed="true"/>₫</td>
 	                        <td>${dh.trangThai}</td>
+	                        <td>
+			                    <c:if test="${fn:toLowerCase(dh.trangThai) == 'chờ xử lý'}">
+			                        <form action="huydonhang" method="post" onsubmit="return confirm('Bạn có chắc muốn hủy đơn hàng này?');">
+			                            <input type="hidden" name="maDonHang" value="${dh.maDonHang}">
+			                            <button type="submit" class="btn btn-sm btn-outline-danger">
+			                                <i class="bi bi-x-circle"></i> Hủy
+			                            </button>
+			                        </form>
+			                    </c:if>
+			                    <c:if test="${fn:toLowerCase(dh.trangThai) != 'chờ xử lý'}">
+			                        <span class="text-muted">--</span>
+			                    </c:if>
+			                </td>
 	                    </tr>
 	                </c:forEach>
 	            </tbody>
@@ -65,7 +84,7 @@
 	    </c:if>
 	    <div class="text-end mt-3">
 		    <a href="trangchu" class="btn btn-secondary d-inline-flex align-items-center gap-2 px-3 py-2 shadow-sm">
-		        ⬅ <span>Trang Chủ</span>
+		        <span>Trang Chủ</span>
 		    </a>
 		</div>
 

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.ChiTietDonHang;
 import model.DonHang;
 import model.GioHangItem;
 import util.KetNoiCSDL;
@@ -100,6 +101,78 @@ public class DonHangDAO {
 			e.printStackTrace();
 		}
 		return danhSach;
+	}
+
+	public List<DonHang> getAll() {
+		List<DonHang> list = new ArrayList<>();
+		String sql = "SELECT * FROM DonHang ORDER BY maDonHang ASC";
+
+		try (Connection conn = KetNoiCSDL.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ResultSet rs = ps.executeQuery()) {
+
+			while (rs.next()) {
+				DonHang dh = new DonHang();
+				dh.setMaDonHang(rs.getInt("maDonHang"));
+				dh.setMaNguoiDung(rs.getInt("maNguoiDung"));
+				dh.setNgayDat(rs.getTimestamp("ngayDat"));
+				dh.setTongTien(rs.getDouble("tongTien"));
+				dh.setTrangThai(rs.getString("trangThai"));
+
+				list.add(dh);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	public List<ChiTietDonHang> getChiTietDonHangById(int maDonHang) {
+		List<ChiTietDonHang> ds = new ArrayList<>();
+		String sql = "SELECT c.maDonHang, c.maSanPham, s.tenSanPham, c.soLuong, c.donGia " + "FROM ChiTietDonHang c "
+				+ "JOIN SanPham s ON c.maSanPham = s.maSanPham " + "WHERE c.maDonHang = ?";
+
+		try (Connection conn = KetNoiCSDL.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setInt(1, maDonHang);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				ChiTietDonHang ct = new ChiTietDonHang();
+				ct.setMaDonHang(rs.getInt("maDonHang"));
+				ct.setMaSanPham(rs.getInt("maSanPham"));
+				ct.setTenSanPham(rs.getString("tenSanPham"));
+				ct.setSoLuong(rs.getInt("soLuong"));
+				ct.setDonGia(rs.getDouble("donGia"));
+				ds.add(ct);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ds;
+	}
+
+	public void capNhatTrangThai(int maDonHang, String trangThai) {
+		String sql = "UPDATE DonHang SET trangThai = ? WHERE maDonHang = ?";
+		try (Connection conn = KetNoiCSDL.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+			stmt.setString(1, trangThai);
+			stmt.setInt(2, maDonHang);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void huyDonHang(int maDonHang) throws Exception {
+		try {
+			Connection conn = KetNoiCSDL.getConnection();
+			String sql = "UPDATE DonHang SET trangThai = N'Đã hủy' WHERE maDonHang = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, maDonHang);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

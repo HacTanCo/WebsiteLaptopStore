@@ -22,10 +22,22 @@ public class SuaGioHangServlet extends HttpServlet {
 			throws ServletException, IOException {
 		int maNguoiDung = ((NguoiDung) request.getSession().getAttribute("nd")).getMaNguoiDung();
 		int maSanPham = Integer.parseInt(request.getParameter("maSanPham"));
-		int soLuong = Integer.parseInt(request.getParameter("soLuong"));
+		String thaoTac = request.getParameter("thaoTac");
 
-		new GioHangDAO().capNhatSoLuong(maNguoiDung, maSanPham, soLuong);
+		GioHangDAO dao = new GioHangDAO();
+		int soLuongHienTai = dao.laySoLuong(maNguoiDung, maSanPham);
+
+		if ("tang".equals(thaoTac)) {
+			dao.capNhatSoLuong(maNguoiDung, maSanPham, soLuongHienTai + 1);
+		} else if ("giam".equals(thaoTac)) {
+			if (soLuongHienTai > 1) {
+				dao.capNhatSoLuong(maNguoiDung, maSanPham, soLuongHienTai - 1);
+			} else {
+				dao.xoaSanPhamKhoiGio(maNguoiDung, maSanPham); // nếu giảm về 0 thì xoá
+			}
+		}
 
 		response.sendRedirect("xemgiohang.jsp");
 	}
+
 }

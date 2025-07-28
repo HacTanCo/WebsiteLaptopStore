@@ -10,8 +10,8 @@
 <body class="container mt-4">
 	<!-- Header -->
 	<div class="d-flex justify-content-end align-items-center gap-3 mt-4 mb-4">
-		<a href="${pageContext.request.contextPath}/trangchu" class="btn btn-secondary">⬅ Trang Chủ</a>
-		<a href="${pageContext.request.contextPath}/dangxuat" class="btn btn-danger">🚪 Đăng xuất</a>
+		<a href="${pageContext.request.contextPath}/trangchu" class="btn btn-secondary">Trang Chủ</a>
+		<a href="${pageContext.request.contextPath}/dangxuat" class="btn btn-danger">Đăng xuất</a>
 	</div>
 
 	<c:if test="${not empty sessionScope.message}">

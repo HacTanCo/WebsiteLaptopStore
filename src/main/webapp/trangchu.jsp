@@ -25,19 +25,19 @@
 
 		<!-- Nút Giỏ hàng -->
 		<a href="xemgiohang.jsp" class="btn btn-warning d-flex align-items-center">
-			🛒 <span class="ms-1">Giỏ hàng (
+			<span class="ms-1">Giỏ hàng (
 				<c:out value="${soSanPhamTrongGio}" /> )
 			</span>
 		</a>
 
 		<!-- Nút Lịch sử đơn hàng -->
 		<a href="lichsudonhang" class="btn btn-outline-primary d-flex align-items-center">
-			📦 <span class="ms-1">Lịch sử đơn hàng</span>
+			<span class="ms-1">Lịch sử đơn hàng</span>
 		</a>
 
 		<!-- Nút Đăng xuất -->
 		<a href="dangxuat" class="btn btn-danger d-flex align-items-center">
-			🚪 <span class="ms-1">Đăng xuất</span>
+			<span class="ms-1">Đăng xuất</span>
 		</a>
 	</div>
 
@@ -46,10 +46,10 @@
 	<!-- Admin Panel -->
 	<c:if test="${nd.admin}">
 		<div class="admin-panel">
-			<h5 class="text-primary">🔧 Chức năng quản trị:</h5>
+			<h5 class="text-primary">Chức năng quản trị:</h5>
 			<div class="d-flex gap-2 mt-2 mb-2">
 				<a href="admin/sanpham" class="btn btn-outline-primary btn-sm">Quản lý sản phẩm</a>
-				<a href="quanly-donhang.jsp" class="btn btn-outline-primary btn-sm">Quản lý đơn hàng</a>
+				<a href="admin/donhang" class="btn btn-outline-primary btn-sm">Quản lý đơn hàng</a>
 				<a href="admin/nguoidung" class="btn btn-outline-primary btn-sm">Quản lý người dùng</a>
 			</div>
 		</div>
